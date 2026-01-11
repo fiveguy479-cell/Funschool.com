@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FunSchool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2ecc71, #f1c40f, #9b59b6);
+}
+
+/* WELCOME */
+#welcome {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+#welcome h1 {
+  font-size: 50px;
+}
+
+#welcome p {
+  font-size: 20px;
+}
+
+/* MAIN */
+#main {
+  display: none;
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+h2 {
+  color: #2ecc71;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #2ecc71;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #27ae60;
+}
+
+.box {
+  background: #ecf0f1;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- WELCOME -->
+<div id="welcome" onclick="start()">
+  <h1>🎒 FunSchool 🎉</h1>
+  <p>Learning can be FUN!</p>
+  <p>Created by <b>Haron</b></p>
+  <p>👉 Click anywhere to start</p>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <div class="section">
+    <h2>📚 Subjects</h2>
+    <button onclick="showHint('math')">➕ Maths</button>
+    <button onclick="showHint('english')">📖 English</button>
+    <button onclick="showHint('science')">🔬 Science</button>
+    <button onclick="showHint('history')">🏺 History</button>
+    <button onclick="showHint('computer')">💻 Computer</button>
+
+    <div class="box" id="hintBox">
+      Choose a subject and get a learning hint 😊
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎮 Fun Games</h2>
+
+    <button onclick="mathGame()">🧮 Math Speed Game</button>
+    <button onclick="englishGame()">📝 English Word Game</button>
+    <button onclick="tableGame()">⏱️ Timetable Game</button>
+    <button onclick="computerGame()">🖥️ Logic Game</button>
+
+    <div class="box" id="gameBox">
+      Click a game to play!
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  FunSchool © 2026 • Learning for Life 😄
+</footer>
+
+<script>
+function start() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("main").style.display = "block";
+}
+
+/* SUBJECT HINTS */
+function showHint(subject) {
+  let hint = "";
+
+  if (subject === "math") {
+    hint = "➕ Hint: Break big numbers into smaller ones to add faster.";
+  }
+  if (subject === "english") {
+    hint = "📖 Hint: A noun names a person, place, or thing.";
+  }
+  if (subject === "science") {
+    hint = "🔬 Hint: Gravity pulls objects toward Earth.";
+  }
+  if (subject === "history") {
+    hint = "🏺 Hint: History helps us learn from the past.";
+  }
+  if (subject === "computer") {
+    hint = "💻 Hint: Computers follow instructions called code.";
+  }
+
+  document.getElementById("hintBox").innerText = hint;
+}
+
+/* GAMES */
+function mathGame() {
+  document.getElementById("gameBox").innerText =
+    "🧮 Math Game: How fast can you answer 6 × 7? (Answer in your head!)";
+}
+
+function englishGame() {
+  document.getElementById("gameBox").innerText =
+    "📝 English Game: Think of 5 words that start with the letter B.";
+}
+
+function tableGame() {
+  document.getElementById("gameBox").innerText =
+    "⏱️ Timetable Game: What is 9 × 8? Try without a calculator!";
+}
+
+function computerGame() {
+  document.getElementById("gameBox").innerText =
+    "🖥️ Logic Game: If you click a button, the computer follows instructions!";
+}
+</script>
+
+</body>
+</html>
