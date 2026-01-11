@@ -12,28 +12,13 @@ body {
   background: linear-gradient(135deg, #2ecc71, #f1c40f, #9b59b6);
 }
 
-/* WELCOME */
 #welcome {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
   text-align: center;
-  cursor: pointer;
+  padding: 60px 20px;
+  color: white;
 }
 
-#welcome h1 {
-  font-size: 50px;
-}
-
-#welcome p {
-  font-size: 20px;
-}
-
-/* MAIN */
-#main {
+#app {
   display: none;
   background: white;
   margin: 20px;
@@ -41,40 +26,37 @@ body {
   border-radius: 12px;
 }
 
-h2 {
+h1, h2 {
   color: #2ecc71;
-}
-
-.section {
-  margin-bottom: 25px;
 }
 
 button {
   padding: 10px 15px;
-  margin: 5px;
+  margin: 6px;
   border: none;
   border-radius: 8px;
   background: #2ecc71;
   color: white;
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
 }
 
 button:hover {
   background: #27ae60;
 }
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
 .box {
   background: #ecf0f1;
   padding: 15px;
   border-radius: 8px;
-  margin-top: 10px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  margin-top: 15px;
 }
 
 footer {
@@ -88,96 +70,74 @@ footer {
 <body>
 
 <!-- WELCOME -->
-<div id="welcome" onclick="start()">
+<div id="welcome">
   <h1>🎒 FunSchool 🎉</h1>
-  <p>Learning can be FUN!</p>
+  <p>Learning made fun</p>
   <p>Created by <b>Haron</b></p>
-  <p>👉 Click anywhere to start</p>
+  <button onclick="startApp()">START</button>
 </div>
 
-<!-- MAIN -->
-<div id="main">
+<!-- APP -->
+<div id="app">
 
-  <div class="section">
-    <h2>📚 Subjects</h2>
-    <button onclick="showHint('math')">➕ Maths</button>
-    <button onclick="showHint('english')">📖 English</button>
-    <button onclick="showHint('science')">🔬 Science</button>
-    <button onclick="showHint('history')">🏺 History</button>
-    <button onclick="showHint('computer')">💻 Computer</button>
+  <h2>📚 Ask a Question</h2>
+  <input id="question" placeholder="Example: What is 6 × 7 ?">
 
-    <div class="box" id="hintBox">
-      Choose a subject and get a learning hint 😊
-    </div>
+  <button onclick="math()">➕ Maths</button>
+  <button onclick="english()">📖 English</button>
+
+  <div class="box" id="hint">Hint will appear here</div>
+
+  <div class="box">
+    <b>Your Answer:</b>
+    <input placeholder="Type your answer here">
   </div>
 
-  <div class="section">
-    <h2>🎮 Fun Games</h2>
+  <h2>🎮 Games</h2>
 
-    <button onclick="mathGame()">🧮 Math Speed Game</button>
-    <button onclick="englishGame()">📝 English Word Game</button>
-    <button onclick="tableGame()">⏱️ Timetable Game</button>
-    <button onclick="computerGame()">🖥️ Logic Game</button>
+  <button onclick="game1()">🧮 Math Game</button>
+  <button onclick="game2()">📝 Word Game</button>
 
-    <div class="box" id="gameBox">
-      Click a game to play!
-    </div>
-  </div>
+  <div class="box" id="game">Choose a game</div>
 
 </div>
 
 <footer>
-  FunSchool © 2026 • Learning for Life 😄
+  FunSchool © 2026 😄
 </footer>
 
 <script>
-function start() {
+function startApp() {
   document.getElementById("welcome").style.display = "none";
-  document.getElementById("main").style.display = "block";
+  document.getElementById("app").style.display = "block";
 }
 
-/* SUBJECT HINTS */
-function showHint(subject) {
-  let hint = "";
+/* SUBJECTS */
+function math() {
+  const q = document.getElementById("question").value.toLowerCase();
+  if (q.includes("6") && q.includes("7")) {
+    document.getElementById("hint").innerText =
+      "Hint: 6 × 7 is close to 5 × 7 + one more 7.";
+  } else {
+    document.getElementById("hint").innerText =
+      "Math hint: Break numbers into smaller parts.";
+  }
+}
 
-  if (subject === "math") {
-    hint = "➕ Hint: Break big numbers into smaller ones to add faster.";
-  }
-  if (subject === "english") {
-    hint = "📖 Hint: A noun names a person, place, or thing.";
-  }
-  if (subject === "science") {
-    hint = "🔬 Hint: Gravity pulls objects toward Earth.";
-  }
-  if (subject === "history") {
-    hint = "🏺 Hint: History helps us learn from the past.";
-  }
-  if (subject === "computer") {
-    hint = "💻 Hint: Computers follow instructions called code.";
-  }
-
-  document.getElementById("hintBox").innerText = hint;
+function english() {
+  document.getElementById("hint").innerText =
+    "English hint: A noun names a person, place, or thing.";
 }
 
 /* GAMES */
-function mathGame() {
-  document.getElementById("gameBox").innerText =
-    "🧮 Math Game: How fast can you answer 6 × 7? (Answer in your head!)";
+function game1() {
+  document.getElementById("game").innerText =
+    "🧮 Game: What is 9 × 8? Try to answer fast!";
 }
 
-function englishGame() {
-  document.getElementById("gameBox").innerText =
-    "📝 English Game: Think of 5 words that start with the letter B.";
-}
-
-function tableGame() {
-  document.getElementById("gameBox").innerText =
-    "⏱️ Timetable Game: What is 9 × 8? Try without a calculator!";
-}
-
-function computerGame() {
-  document.getElementById("gameBox").innerText =
-    "🖥️ Logic Game: If you click a button, the computer follows instructions!";
+function game2() {
+  document.getElementById("game").innerText =
+    "📝 Game: Write 3 adjectives to describe a school.";
 }
 </script>
 
